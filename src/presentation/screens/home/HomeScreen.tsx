@@ -1,24 +1,24 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
-import React, { useEffect } from "react";
+import { FlatList, StyleSheet, View } from "react-native";
+import React, { useContext, useEffect } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { usePosts } from "@/presentation/hooks/usePosts";
-
+import { ThemeContext } from "@/presentation/context/ThemeContext";
+import { Text } from "react-native-paper";
 const HomeScreen = () => {
   const topSafeArea = useSafeAreaInsets().top;
+  const { colors } = useContext(ThemeContext);
   const { data, isLoading } = usePosts();
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   return (
-    <View style={{ top: topSafeArea }}>
+    <View style={{ top: topSafeArea, backgroundColor: colors.background }}>
       <Text>HomeScreen</Text>
 
       {!isLoading && (
         <FlatList
           data={data}
-          renderItem={({ item }) => <Text>{item.title}</Text>}
+          renderItem={({ item }) => (
+            <Text variant="bodyMedium">{item.title}</Text>
+          )}
           keyExtractor={(item) => item.id.toString()}
         />
       )}

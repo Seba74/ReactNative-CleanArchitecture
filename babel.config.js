@@ -8,5 +8,10 @@ module.exports = function (api) {
       ["@babel/plugin-transform-class-static-block"],
       ["@babel/plugin-transform-class-properties", { loose: true }],
     ],
+    env: {
+      production: {
+        plugins: ["react-native-paper/babel"],
+      },
+    },
   };
 };
