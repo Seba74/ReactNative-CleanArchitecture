@@ -4,7 +4,14 @@ import "reflect-metadata";
 
 export default () => {
   return (
-    <Tabs screenOptions={{ headerShown: false }}>
+    <Tabs
+      screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarStyle: {
+          display: route.name.startsWith("(products)") ? "none" : "flex",
+        },
+      })}
+    >
       <Tabs.Screen
         name="home"
         options={{
@@ -49,6 +56,13 @@ export default () => {
           tabBarIcon: ({ color }) => (
             <FontAwesome size={20} name="sign-in" color={color} />
           ),
+          tabBarButton: () => null,
+        }}
+      />
+
+      <Tabs.Screen
+        name="(products)"
+        options={{
           tabBarButton: () => null,
         }}
       />
