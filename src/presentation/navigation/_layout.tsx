@@ -4,14 +4,16 @@ import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect } from "react";
 import "react-native-reanimated";
 import * as SystemUI from "expo-system-ui";
-import "reflect-metadata";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from "inversify-react";
 import { container } from "../../infrastructure/di/container";
+import { SafeAreaView, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 SplashScreen.preventAutoHideAsync();
 const queryClient = new QueryClient();
 export default function RootLayout() {
+  const topSafeArea = useSafeAreaInsets().top;
   const [loaded] = useFonts({
     SpaceMono: require("@assets/fonts/SpaceMono-Regular.ttf"),
   });
@@ -33,9 +35,9 @@ export default function RootLayout() {
   return (
     <Provider container={container} key={container.id}>
       <QueryClientProvider client={queryClient}>
-        <Stack initialRouteName="index">
+        <Stack>
           <Stack.Screen
-            name="index"
+            name="(tabs)"
             options={{ headerShown: false, animation: "fade" }}
           />
         </Stack>
