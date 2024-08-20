@@ -1,11 +1,12 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Pressable } from "react-native";
 import React from "react";
 import { Link } from "expo-router";
 import Back from "@/presentation/components/Back";
+import { Text } from "react-native-paper";
 
 const ProductListScreen = () => {
   return (
-    <View style={{ top: 50 }}>
+    <View>
       <Back />
       <Text>Products List Screen</Text>
       {["nike", "adidas", "puma"].map((z, i) => (

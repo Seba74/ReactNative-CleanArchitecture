@@ -1,14 +1,11 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Pressable } from "react-native";
 import React from "react";
 import { Link } from "expo-router";
+import { Text } from "react-native-paper";
 
 const MapScreen = () => {
   return (
-    <View
-      style={{
-        top: 50,
-      }}
-    >
+    <View>
       <Text>MapScreen</Text>
       <Link href="/(products)" asChild>
         <Pressable>

@@ -1,14 +1,37 @@
 import { Tabs } from "expo-router";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import "reflect-metadata";
+import { ThemeContext } from "@/presentation/context/ThemeContext";
+import { useContext } from "react";
 
 export default () => {
+
+  const { colors } = useContext(ThemeContext);
+  const bottomTabBarHeight = 55;
+
+  const screens = [
+    { name: "index", title: "Inicio", icon: "home" },
+    { name: "map", title: "Tiendas", icon: "map" },
+    { name: "explore", title: "Explorar", icon: "explore" },
+    { name: "suscriptions", title: "Suscripciones", icon: "store" },
+    { name: "more", title: "Más", icon: "more" },
+  ];
+
   return (
     <Tabs
       screenOptions={({ route }) => ({
         headerShown: false,
+        tabBarActiveTintColor: colors.onPrimaryContainer,
+        tabBarInactiveTintColor: colors.outline,
         tabBarStyle: {
+          height: bottomTabBarHeight,
+          paddingBottom: 4,
+          backgroundColor: colors.background,
+          borderTopColor: colors.outlineVariant,
           display: route.name.startsWith("(products)") ? "none" : "flex",
+        },
+        tabBarItemStyle: {
+          paddingVertical: 3,
         },
       })}
     >

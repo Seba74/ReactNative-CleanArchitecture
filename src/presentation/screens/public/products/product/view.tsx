@@ -1,12 +1,13 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import { useLocalSearchParams } from "expo-router";
 import Back from "@/presentation/components/Back";
+import { Text } from "react-native-paper";
 
 const ProductScreen = () => {
   const { id } = useLocalSearchParams();
   return (
-    <View style={{ top: 50 }}>
+    <View>
       <Back />
       <Text>ProductScreen {id}</Text>
     </View>
