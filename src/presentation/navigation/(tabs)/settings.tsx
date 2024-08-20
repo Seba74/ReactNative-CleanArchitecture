@@ -1,5 +1,5 @@
+import SettingsScreen from "@/presentation/screens/public/settings/view";
 import React from "react";
-import SettingsScreen from "@/presentation/screens/private/settings/view";
 
 const Settings = () => {
   return <SettingsScreen />;

@@ -31,7 +31,6 @@ export default function RootLayout() {
     <Provider container={container} key={container.id}>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
-
           <StackLayout />
         </ThemeProvider>
       </QueryClientProvider>
@@ -40,14 +39,8 @@ export default function RootLayout() {
 }
 
 const StackLayout = () => {
-  const topSafeArea = useSafeAreaInsets().top;
-  const { colors } = useContext(ThemeContext);
   return (
-    <SafeAreaView style={{
-      flex: 1,
-      marginTop: topSafeArea,
-      backgroundColor: colors.background
-    }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <Stack
         screenOptions={{
           headerShown: false,
@@ -58,6 +51,5 @@ const StackLayout = () => {
         <Stack.Screen name="index" />
       </Stack>
     </SafeAreaView>
-
-  )
-}
+  );
+};

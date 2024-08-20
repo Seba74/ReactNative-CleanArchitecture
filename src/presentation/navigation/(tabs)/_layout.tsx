@@ -1,20 +1,19 @@
 import { Tabs } from "expo-router";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
 import "reflect-metadata";
 import { ThemeContext } from "@/presentation/context/ThemeContext";
 import { useContext } from "react";
+import { CustomIcon } from "@/presentation/components/navigation/CustomIcon";
 
 export default () => {
-
   const { colors } = useContext(ThemeContext);
   const bottomTabBarHeight = 55;
 
   const screens = [
-    { name: "index", title: "Inicio", icon: "home" },
+    { name: "home", title: "Inicio", icon: "home" },
     { name: "map", title: "Tiendas", icon: "map" },
-    { name: "explore", title: "Explorar", icon: "explore" },
+    { name: "categories", title: "Explorar", icon: "explore" },
     { name: "suscriptions", title: "Suscripciones", icon: "store" },
-    { name: "more", title: "Más", icon: "more" },
+    { name: "settings", title: "Más", icon: "more" },
   ];
 
   return (
@@ -28,57 +27,33 @@ export default () => {
           paddingBottom: 4,
           backgroundColor: colors.background,
           borderTopColor: colors.outlineVariant,
-          display: route.name.startsWith("(products)") ? "none" : "flex",
         },
         tabBarItemStyle: {
           paddingVertical: 3,
         },
       })}
     >
-      <Tabs.Screen
-        name="home"
-        options={{
-          title: "inicio",
-          tabBarIcon: ({ color }) => (
-            <FontAwesome size={20} name="home" color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="map"
-        options={{
-          title: "tiendas",
-          tabBarIcon: ({ color }) => (
-            <FontAwesome size={20} name="map" color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="categories"
-        options={{
-          title: "categorias",
-          tabBarIcon: ({ color }) => (
-            <FontAwesome size={20} name="odnoklassniki-square" color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="settings"
-        options={{
-          title: "settings",
-          tabBarIcon: ({ color }) => (
-            <FontAwesome size={20} name="heart" color={color} />
-          ),
-          tabBarButton: () => null,
-        }}
-      />
+      {screens.map((screen) => (
+        <Tabs.Screen
+          key={screen.name}
+          name={screen.name}
+          options={{
+            title: screen.title,
+            tabBarIcon: ({ color }) =>
+              CustomIcon({
+                name: screen.icon as any,
+                focused: color === colors.onPrimaryContainer,
+                size: 24,
+                color: color,
+                bg: colors.primaryContainer,
+              }),
+          }}
+        />
+      ))}
       <Tabs.Screen
         name="auth"
         options={{
           title: "auth",
-          tabBarIcon: ({ color }) => (
-            <FontAwesome size={20} name="sign-in" color={color} />
-          ),
           tabBarButton: () => null,
         }}
       />

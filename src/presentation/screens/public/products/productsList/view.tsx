@@ -3,10 +3,11 @@ import React from "react";
 import { Link } from "expo-router";
 import Back from "@/presentation/components/Back";
 import { Text } from "react-native-paper";
+import Layout from "@/presentation/components/ui/Layout";
 
 const ProductListScreen = () => {
   return (
-    <View>
+    <Layout>
       <Back />
       <Text>Products List Screen</Text>
       {["nike", "adidas", "puma"].map((z, i) => (
@@ -32,7 +33,7 @@ const ProductListScreen = () => {
           </Pressable>
         </Link>
       ))}
-    </View>
+    </Layout>
   );
 };
 

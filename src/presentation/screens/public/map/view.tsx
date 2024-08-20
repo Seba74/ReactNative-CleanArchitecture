@@ -1,18 +1,21 @@
-import { View, Pressable } from "react-native";
+import { Pressable } from "react-native";
 import React from "react";
-import { Link } from "expo-router";
-import { Text } from "react-native-paper";
+import { Link, router } from "expo-router";
+import { Button, Text } from "react-native-paper";
+import Layout from "@/presentation/components/ui/Layout";
 
 const MapScreen = () => {
   return (
-    <View>
+    <Layout>
       <Text>MapScreen</Text>
-      <Link href="/(products)" asChild>
-        <Pressable>
-          <Text>Products BTN</Text>
-        </Pressable>
-      </Link>
-    </View>
+      <Button
+        onPress={() => router.push("/(products)")}
+        mode="contained"
+        style={{ marginTop: 16 }}
+      >
+        Products
+      </Button>
+    </Layout>
   );
 };
 
